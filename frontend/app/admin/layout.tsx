@@ -1,20 +1,36 @@
 'use client';
 
 import { useEffect } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import {
   LayoutDashboard,
   Package,
   ShoppingBag,
-  ArrowLeft,
+  LogOut,
+  Crown,
 } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 
-const navItems = [
-  { href: '/admin', label: 'Dashboard', icon: LayoutDashboard },
-  { href: '/admin/products', label: 'Products', icon: Package },
-  { href: '/admin/orders', label: 'Orders', icon: ShoppingBag },
+const navigation = [
+  {
+    name: 'Dashboard',
+    href: '/admin',
+    icon: LayoutDashboard,
+    gradient: 'from-orange-500 to-red-500',
+  },
+  {
+    name: 'Products',
+    href: '/admin/products',
+    icon: Package,
+    gradient: 'from-blue-500 to-indigo-500',
+  },
+  {
+    name: 'Orders',
+    href: '/admin/orders',
+    icon: ShoppingBag,
+    gradient: 'from-purple-500 to-pink-500',
+  },
 ];
 
 export default function AdminLayout({
@@ -22,9 +38,9 @@ export default function AdminLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const router = useRouter();
   const pathname = usePathname();
-  const { user, loading } = useAuth();
+  const router = useRouter();
+  const { user, loading, logout } = useAuth();
 
   useEffect(() => {
     if (loading) return;
@@ -34,67 +50,100 @@ export default function AdminLayout({
     }
     if (user.role !== 'admin') {
       router.push('/');
-      return;
     }
   }, [user, loading, router]);
 
-  if (loading || !user || user.role !== 'admin') {
+  if (loading) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-gray-50">
-        <p className="text-gray-600">Loading...</p>
+      <div className="flex min-h-screen items-center justify-center bg-slate-900">
+        <p className="text-gray-400">Loading...</p>
       </div>
     );
   }
 
+  if (!user || user.role !== 'admin') return null;
+
+  const handleLogout = () => {
+    logout();
+    router.push('/');
+  };
+
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Sidebar - fixed full height */}
-      <aside className="fixed inset-y-0 left-0 z-10 w-64 bg-gray-900 text-gray-200">
-        <div className="p-6">
-          <Link href="/admin" className="text-2xl font-bold text-orange-400">
-            🛒 Admin
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-orange-50/30">
+      {/* Sidebar */}
+      <aside className="fixed left-0 top-0 z-10 flex h-screen w-64 flex-col bg-gradient-to-b from-slate-900 via-slate-900 to-slate-800 shadow-2xl">
+        {/* Logo */}
+        <div className="border-b border-white/10 p-6">
+          <Link href="/admin" className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-orange-500 to-red-500 shadow-lg shadow-orange-500/30">
+              <Crown className="h-5 w-5 text-white" strokeWidth={2.5} />
+            </div>
+            <div>
+              <h1 className="text-lg font-bold text-white">MyKart</h1>
+              <p className="text-xs text-orange-300">Admin Panel</p>
+            </div>
           </Link>
         </div>
 
-        <nav className="px-3">
-          {navItems.map((item) => {
-            const Icon = item.icon;
+        {/* Navigation */}
+        <nav className="flex-1 space-y-1 p-4">
+          {navigation.map((item) => {
             const isActive =
               pathname === item.href ||
               (item.href !== '/admin' && pathname.startsWith(item.href));
+            const Icon = item.icon;
 
             return (
               <Link
-                key={item.href}
+                key={item.name}
                 href={item.href}
-                className={`mb-1 flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium transition ${
+                className={`group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-200 ${
                   isActive
-                    ? 'bg-orange-600 text-white'
-                    : 'text-gray-300 hover:bg-gray-800 hover:text-white'
+                    ? `bg-gradient-to-r ${item.gradient} text-white shadow-lg`
+                    : 'text-gray-400 hover:bg-white/5 hover:text-white'
                 }`}
               >
-                <Icon className="h-4 w-4" />
-                {item.label}
+                <div
+                  className={`flex h-9 w-9 items-center justify-center rounded-lg transition ${
+                    isActive
+                      ? 'bg-white/20'
+                      : 'bg-slate-800 group-hover:bg-slate-700'
+                  }`}
+                >
+                  <Icon className="h-4 w-4" strokeWidth={2.5} />
+                </div>
+                <span>{item.name}</span>
               </Link>
             );
           })}
         </nav>
 
-        <div className="absolute bottom-0 left-0 w-full border-t border-gray-800 p-4">
-          <Link
-            href="/"
-            className="flex items-center gap-2 text-sm text-gray-400 hover:text-white"
+        {/* User Profile + Logout */}
+        <div className="border-t border-white/10 p-4">
+          <div className="mb-3 flex items-center gap-3 rounded-xl bg-white/5 p-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-orange-500 to-red-500 font-bold text-white shadow-md">
+              {user.name.charAt(0).toUpperCase()}
+            </div>
+            <div className="min-w-0 flex-1">
+              <p className="truncate text-sm font-semibold text-white">
+                {user.name}
+              </p>
+              <p className="truncate text-xs text-gray-400">{user.email}</p>
+            </div>
+          </div>
+
+          <button
+            onClick={handleLogout}
+            className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-gray-400 transition hover:bg-red-500/10 hover:text-red-400"
           >
-            <ArrowLeft className="h-4 w-4" />
-            Back to Store
-          </Link>
+            <LogOut className="h-4 w-4" />
+            Logout
+          </button>
         </div>
       </aside>
 
-      {/* Main content area */}
-      <main className="min-h-screen pl-64">
-        <div className="p-8">{children}</div>
-      </main>
+      {/* Main Content */}
+      <main className="pl-64">{children}</main>
     </div>
   );
 }
