@@ -13,9 +13,13 @@ function PaymentSuccessContent() {
   const { refresh } = useCart();
   const [countdown, setCountdown] = useState(5);
 
-  // Clear cart after payment
+  // Clear cart after payment (with delay to ensure backend processed)
   useEffect(() => {
-    refresh();
+    const timer = setTimeout(() => {
+      refresh();
+    }, 1500);
+
+    return () => clearTimeout(timer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
