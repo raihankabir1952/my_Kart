@@ -8,7 +8,8 @@ import { AuthModule } from './auth/auth.module';
 import { ProductsModule } from './products/products.module';
 import { CartModule } from './cart/cart.module';
 import { OrdersModule } from './orders/orders.module';
-import { UploadModule } from './upload/upload.module'; // ← ADD
+import { UploadModule } from './upload/upload.module';
+import { PaymentsModule } from './payments/payments.module'; // ← ADD
 
 @Module({
   imports: [
@@ -31,7 +32,8 @@ import { UploadModule } from './upload/upload.module'; // ← ADD
     ProductsModule,
     CartModule,
     OrdersModule,
-    UploadModule, // ← ADD
+    UploadModule,
+    PaymentsModule, // ← ADD
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -18,7 +18,8 @@ interface CartContextType {
   loading: boolean;
   totalItems: number;
   subtotal: number;
-  addToCart: (productId: string, quantity: number) => Promise<void>;
+  addItem: (productId: string, quantity: number) => Promise<void>;        // ← renamed
+  addToCart: (productId: string, quantity: number) => Promise<void>;      // ← alias for backward compat
   updateQuantity: (itemId: string, quantity: number) => Promise<void>;
   removeItem: (itemId: string) => Promise<void>;
   clearCart: () => Promise<void>;
@@ -32,7 +33,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
   const [loading, setLoading] = useState(false);
 
-  // User logged in / changed - fetch cart
   const refresh = useCallback(async () => {
     if (!user) {
       setItems([]);
@@ -53,7 +53,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
     refresh();
   }, [refresh]);
 
-  const addToCart = async (productId: string, quantity: number) => {
+  // Main add function
+  const addItem = async (productId: string, quantity: number) => {
     if (!user) {
       toast.error('Please login first');
       return;
@@ -66,6 +67,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
       toast.error(error.response?.data?.message || 'Failed to add');
     }
   };
+
+  // Alias for backward compatibility
+  const addToCart = addItem;
 
   const updateQuantity = async (itemId: string, quantity: number) => {
     try {
@@ -96,7 +100,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  // Computed values
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
   const subtotal = items.reduce(
     (sum, item) => sum + Number(item.product.price) * item.quantity,
@@ -110,7 +113,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
         loading,
         totalItems,
         subtotal,
-        addToCart,
+        addItem,        // ← new
+        addToCart,      // ← alias
         updateQuantity,
         removeItem,
         clearCart,
