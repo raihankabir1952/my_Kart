@@ -58,3 +58,8 @@ async function bootstrap() {
   console.log(`🚀 Backend running on port ${port}`);
 }
 bootstrap();
+
+
+
+
+// ngrok http 4000
