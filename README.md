@@ -127,9 +127,12 @@ Unlike a basic CRUD application, My-Kart includes business rules, role-based aut
 
 ## 🏠 Home & Product Discovery
 
+### ➡️ Login Page
+![My-Kart Home Page](./screenshots/login.png)
+
 ### 🏠 Home Page
 
-![My-Kart Home Page](./screenshots/home-page.png)
+![My-Kart Home Page](./screenshots/homepage.png)
 
 The homepage provides a responsive product browsing experience with product cards, categories, pricing, ratings, and shopping actions.
 
@@ -163,17 +166,12 @@ The checkout page collects shipping information and provides payment options inc
 
 ## 📦 Customer Orders
 
-### 📋 Customer Orders
-
-![My-Kart Customer Orders](./screenshots/customer-orders.png)
-
-Customers can view their previous orders, payment information, order status, totals, and order dates from a dedicated order management page.
 
 ---
 
 ### 🔍 Order Details
 
-![My-Kart Order Details](./screenshots/customer-order-details.png)
+![My-Kart Order Details](./screenshots/order-details.png)
 
 The order details page provides a complete view of the selected order, including products, quantities, shipping information, payment method, total amount, and current status.
 
@@ -183,7 +181,7 @@ The order details page provides a complete view of the selected order, including
 
 ### 👤 User Profile
 
-![My-Kart User Profile](./screenshots/user-profile.png)
+![My-Kart User Profile](./screenshots/profile.png)
 
 The profile page allows authenticated users to view and update their account information including name, email, and phone number.
 
