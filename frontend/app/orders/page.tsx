@@ -79,23 +79,29 @@ const statusConfig = {
 export default function OrdersPage() {
   const router = useRouter();
   const { user, loading: authLoading } = useAuth();
+
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (authLoading) return;
+
     if (!user) {
       router.push('/login');
       return;
     }
+
     fetchOrders();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, authLoading]);
 
   const fetchOrders = async () => {
     try {
       setLoading(true);
+
       const res = await api.get<Order[]>('/orders/me');
+
       setOrders(res.data);
     } catch (error) {
       console.error('Failed to fetch orders', error);
@@ -111,30 +117,37 @@ export default function OrdersPage() {
   if (!user) return null;
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-orange-50/40">
-      <div className="mx-auto max-w-5xl px-4 py-10">
+    <main className="min-h-screen overflow-x-hidden bg-gradient-to-br from-gray-50 via-white to-orange-50/40">
+      <div className="mx-auto w-full max-w-5xl px-4 py-8 sm:py-10">
         {/* Page Header */}
-        <div className="mb-8 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-orange-500 to-red-500 shadow-lg shadow-orange-500/30">
-              <Receipt className="h-7 w-7 text-white" strokeWidth={2.5} />
+        <div className="mb-6 flex items-center justify-between gap-4 sm:mb-8">
+          <div className="flex min-w-0 items-center gap-3 sm:gap-4">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-orange-500 to-red-500 shadow-lg shadow-orange-500/30 sm:h-14 sm:w-14 sm:rounded-2xl">
+              <Receipt
+                className="h-6 w-6 text-white sm:h-7 sm:w-7"
+                strokeWidth={2.5}
+              />
             </div>
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900">My Orders</h1>
-              <p className="mt-0.5 text-sm text-gray-500">
+
+            <div className="min-w-0">
+              <h1 className="text-2xl font-bold text-gray-900 sm:text-3xl">
+                My Orders
+              </h1>
+
+              <p className="mt-0.5 text-xs text-gray-500 sm:text-sm">
                 Track and manage your purchases
               </p>
             </div>
           </div>
 
-          {/* Order count badge */}
+          {/* Order Count */}
           {orders.length > 0 && (
-            <div className="hidden rounded-full bg-white px-5 py-2.5 shadow-sm ring-1 ring-gray-200 sm:block">
-              <p className="text-sm">
-                <span className="text-2xl font-bold text-orange-600">
+            <div className="shrink-0 rounded-full bg-white px-3 py-2 shadow-sm ring-1 ring-gray-200 sm:px-5 sm:py-2.5">
+              <p className="text-xs sm:text-sm">
+                <span className="text-xl font-bold text-orange-600 sm:text-2xl">
                   {orders.length}
                 </span>{' '}
-                <span className="text-gray-600">
+                <span className="hidden text-gray-600 sm:inline">
                   {orders.length === 1 ? 'order' : 'orders'}
                 </span>
               </p>
@@ -144,19 +157,22 @@ export default function OrdersPage() {
 
         {/* Empty State */}
         {orders.length === 0 && (
-          <div className="rounded-3xl bg-white p-16 text-center shadow-sm ring-1 ring-gray-200">
-            <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-orange-100 to-red-100">
-              <ShoppingBag className="h-12 w-12 text-orange-600" />
+          <div className="rounded-2xl bg-white p-8 text-center shadow-sm ring-1 ring-gray-200 sm:rounded-3xl sm:p-16">
+            <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-orange-100 to-red-100 sm:h-24 sm:w-24">
+              <ShoppingBag className="h-10 w-10 text-orange-600 sm:h-12 sm:w-12" />
             </div>
-            <h2 className="mt-6 text-2xl font-bold text-gray-900">
+
+            <h2 className="mt-5 text-xl font-bold text-gray-900 sm:mt-6 sm:text-2xl">
               No orders yet
             </h2>
-            <p className="mt-2 text-gray-500">
+
+            <p className="mt-2 text-sm text-gray-500">
               Start shopping to see your orders here
             </p>
+
             <Link
               href="/"
-              className="mt-6 inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-orange-500 to-red-500 px-7 py-3 font-semibold text-white shadow-lg shadow-orange-500/30 transition hover:shadow-xl hover:shadow-orange-500/40 hover:scale-105"
+              className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-xl bg-gradient-to-r from-orange-500 to-red-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-orange-500/30 transition hover:scale-105 hover:shadow-xl hover:shadow-orange-500/40 sm:px-7"
             >
               Browse Products
               <ArrowRight className="h-4 w-4" />
@@ -168,7 +184,10 @@ export default function OrdersPage() {
         <div className="space-y-4">
           {orders.map((order) => {
             const config =
-              statusConfig[order.status as OrderStatus] || statusConfig.pending;
+              statusConfig[
+                order.status as OrderStatus
+              ] || statusConfig.pending;
+
             const StatusIcon = config.icon;
 
             return (
@@ -177,72 +196,110 @@ export default function OrdersPage() {
                 href={`/orders/${order.id}`}
                 className="group block"
               >
-                <div className="relative overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-gray-200 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-orange-200/50 hover:ring-orange-200">
-                  {/* Colored accent bar (left side) */}
+                <div className="relative overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-gray-200 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-orange-200/50 hover:ring-orange-200 sm:rounded-2xl">
+                  {/* Colored Accent Bar */}
                   <div
                     className={`absolute left-0 top-0 h-full w-1.5 bg-gradient-to-b ${config.accentBar}`}
                   />
 
-                  <div className="flex items-center gap-5 p-6 pl-9">
-                    {/* Status icon circle */}
-                    <div
-                      className={`flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br ${config.iconBg} shadow-md`}
-                    >
-                      <StatusIcon
-                        className="h-7 w-7 text-white"
-                        strokeWidth={2.5}
-                      />
-                    </div>
-
-                    {/* Order Info */}
-                    <div className="min-w-0 flex-1">
-                      <div className="flex flex-wrap items-center gap-2">
-                        <p className="font-mono text-sm font-bold text-gray-900">
-                          #{order.orderNumber}
-                        </p>
-                        <span
-                          className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-semibold ${config.badgeBg} ${config.badgeText}`}
+                  {/* Order Content */}
+                  <div className="p-4 pl-7 sm:p-6 sm:pl-9">
+                    <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-5">
+                      {/* Top / Status */}
+                      <div className="flex items-center gap-3 sm:block">
+                        <div
+                          className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${config.iconBg} shadow-md sm:h-14 sm:w-14 sm:rounded-2xl`}
                         >
-                          <span
-                            className={`h-1.5 w-1.5 rounded-full ${config.dot}`}
+                          <StatusIcon
+                            className="h-6 w-6 text-white sm:h-7 sm:w-7"
+                            strokeWidth={2.5}
                           />
-                          {config.label}
-                        </span>
+                        </div>
+
+                        {/* Mobile Status */}
+                        <div className="sm:hidden">
+                          <div className="flex flex-wrap items-center gap-2">
+                            <p className="font-mono text-sm font-bold text-gray-900">
+                              #{order.orderNumber}
+                            </p>
+
+                            <span
+                              className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold ${config.badgeBg} ${config.badgeText}`}
+                            >
+                              <span
+                                className={`h-1.5 w-1.5 rounded-full ${config.dot}`}
+                              />
+                              {config.label}
+                            </span>
+                          </div>
+                        </div>
                       </div>
 
-                      <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-gray-600">
-                        <span className="flex items-center gap-1.5">
-                          <Calendar className="h-3.5 w-3.5 text-gray-400" />
-                          {new Date(order.createdAt).toLocaleDateString(
-                            'en-US',
-                            {
-                              year: 'numeric',
-                              month: 'short',
-                              day: 'numeric',
-                            },
-                          )}
-                        </span>
-                        <span className="flex items-center gap-1.5">
-                          <Package className="h-3.5 w-3.5 text-gray-400" />
-                          {order.items?.length || 0}{' '}
-                          {(order.items?.length || 0) === 1 ? 'item' : 'items'}
-                        </span>
-                      </div>
-                    </div>
+                      {/* Order Info */}
+                      <div className="min-w-0 flex-1">
+                        {/* Desktop Order Number + Status */}
+                        <div className="hidden flex-wrap items-center gap-2 sm:flex">
+                          <p className="font-mono text-sm font-bold text-gray-900">
+                            #{order.orderNumber}
+                          </p>
 
-                    {/* Total + Arrow */}
-                    <div className="flex flex-col items-end gap-2">
-                      <p className="text-2xl font-bold text-gray-900">
-                        ৳{Number(order.total).toLocaleString()}
-                      </p>
-                      <div className="flex items-center gap-1 text-xs font-semibold text-orange-600 opacity-0 transition group-hover:opacity-100">
-                        View details
-                        <ArrowRight className="h-3 w-3 transition group-hover:translate-x-1" />
+                          <span
+                            className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-semibold ${config.badgeBg} ${config.badgeText}`}
+                          >
+                            <span
+                              className={`h-1.5 w-1.5 rounded-full ${config.dot}`}
+                            />
+                            {config.label}
+                          </span>
+                        </div>
+
+                        {/* Date + Items */}
+                        <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-gray-600 sm:text-sm">
+                          <span className="flex items-center gap-1.5">
+                            <Calendar className="h-3.5 w-3.5 shrink-0 text-gray-400" />
+
+                            {new Date(
+                              order.createdAt,
+                            ).toLocaleDateString(
+                              'en-US',
+                              {
+                                year: 'numeric',
+                                month: 'short',
+                                day: 'numeric',
+                              },
+                            )}
+                          </span>
+
+                          <span className="flex items-center gap-1.5">
+                            <Package className="h-3.5 w-3.5 shrink-0 text-gray-400" />
+
+                            {order.items?.length || 0}{' '}
+                            {(order.items?.length || 0) ===
+                            1
+                              ? 'item'
+                              : 'items'}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Total */}
+                      <div className="flex items-center justify-between border-t border-gray-100 pt-3 sm:flex-col sm:items-end sm:border-0 sm:pt-0">
+                        <p className="text-xl font-bold text-gray-900 sm:text-2xl">
+                          ৳
+                          {Number(
+                            order.total,
+                          ).toLocaleString()}
+                        </p>
+
+                        <div className="flex items-center gap-1 text-xs font-semibold text-orange-600 transition sm:mt-2 sm:opacity-0 sm:group-hover:opacity-100">
+                          View details
+                          <ArrowRight className="h-3 w-3 transition group-hover:translate-x-1" />
+                        </div>
                       </div>
                     </div>
                   </div>
 
-                  {/* Hover gradient overlay */}
+                  {/* Hover Gradient Overlay */}
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-orange-50/0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-hover:to-orange-50/40" />
                 </div>
               </Link>

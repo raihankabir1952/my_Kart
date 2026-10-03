@@ -67,23 +67,24 @@ export default function ResetPasswordPage() {
     }
   };
 
+  /* Invalid / Missing Token */
   if (!token) {
     return (
-      <main className="min-h-screen bg-gray-50 py-12">
-        <div className="mx-auto max-w-md px-4">
-          <div className="rounded-lg bg-white p-8 text-center shadow-md">
-            <h1 className="text-2xl font-bold text-gray-900">
+      <main className="min-h-screen bg-gray-50 px-4 py-8 sm:py-12">
+        <div className="mx-auto w-full max-w-md">
+          <div className="rounded-lg bg-white p-5 text-center shadow-md sm:p-8">
+            <h1 className="text-xl font-bold text-gray-900 sm:text-2xl">
               Invalid Reset Link
             </h1>
 
-            <p className="mt-2 text-sm text-gray-600">
+            <p className="mt-2 text-sm leading-6 text-gray-600">
               This password reset link is invalid or
               incomplete.
             </p>
 
             <Link
               href="/forgot-password"
-              className="mt-6 inline-block text-sm font-medium text-orange-600 hover:underline"
+              className="mt-6 inline-flex min-h-10 items-center text-sm font-medium text-orange-600 hover:underline"
             >
               Request a new reset link
             </Link>
@@ -94,61 +95,82 @@ export default function ResetPasswordPage() {
   }
 
   return (
-    <main className="min-h-screen bg-gray-50 py-12">
-      <div className="mx-auto max-w-md px-4">
-        <div className="rounded-lg bg-white p-8 shadow-md">
-          <h1 className="text-2xl font-bold text-gray-900">
-            Reset Password
-          </h1>
+    <main className="min-h-screen bg-gray-50 px-4 py-8 sm:py-12">
+      <div className="mx-auto w-full max-w-md">
+        <div className="rounded-lg bg-white p-5 shadow-md sm:p-8">
+          {/* Header */}
+          <div>
+            <h1 className="text-xl font-bold text-gray-900 sm:text-2xl">
+              Reset Password
+            </h1>
 
-          <p className="mt-2 text-sm text-gray-600">
-            Enter your new password below.
-          </p>
+            <p className="mt-2 text-sm leading-6 text-gray-600">
+              Enter your new password below.
+            </p>
+          </div>
 
+          {/* Reset Form */}
           <form
             onSubmit={handleSubmit}
             className="mt-6 space-y-4"
           >
+            {/* New Password */}
             <div>
-              <label className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-gray-700"
+              >
                 New Password
               </label>
 
               <input
+                id="password"
                 type="password"
                 required
                 minLength={6}
+                autoComplete="new-password"
                 value={password}
                 onChange={(e) =>
                   setPassword(e.target.value)
                 }
-                className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500"
+                className="mt-1 min-h-11 w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500 sm:text-base"
                 placeholder="Enter new password"
               />
+
+              <p className="mt-1 text-xs text-gray-500">
+                Password must be at least 6 characters.
+              </p>
             </div>
 
+            {/* Confirm Password */}
             <div>
-              <label className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="confirmPassword"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Confirm Password
               </label>
 
               <input
+                id="confirmPassword"
                 type="password"
                 required
                 minLength={6}
+                autoComplete="new-password"
                 value={confirmPassword}
                 onChange={(e) =>
                   setConfirmPassword(e.target.value)
                 }
-                className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500"
+                className="mt-1 min-h-11 w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500 sm:text-base"
                 placeholder="Confirm new password"
               />
             </div>
 
+            {/* Submit */}
             <button
               type="submit"
               disabled={loading}
-              className="w-full rounded-md bg-orange-600 px-4 py-2.5 font-medium text-white transition hover:bg-orange-700 disabled:cursor-not-allowed disabled:bg-gray-400"
+              className="min-h-11 w-full rounded-md bg-orange-600 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-orange-700 disabled:cursor-not-allowed disabled:bg-gray-400 sm:text-base"
             >
               {loading
                 ? 'Resetting...'
@@ -156,10 +178,11 @@ export default function ResetPasswordPage() {
             </button>
           </form>
 
+          {/* Back to Login */}
           <div className="mt-6 text-center">
             <Link
               href="/login"
-              className="text-sm font-medium text-orange-600 hover:underline"
+              className="inline-flex min-h-10 items-center text-sm font-medium text-orange-600 hover:underline"
             >
               ← Back to Login
             </Link>

@@ -78,19 +78,22 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="min-h-screen bg-gray-50 py-12">
-      <div className="mx-auto max-w-md px-4">
-        <div className="rounded-lg bg-white p-8 shadow-md">
-          <h1 className="text-2xl font-bold text-gray-900">
-            Welcome Back
-          </h1>
+    <main className="min-h-screen bg-gray-50 px-4 py-8 sm:py-12">
+      <div className="mx-auto w-full max-w-md">
+        <div className="rounded-lg bg-white p-5 shadow-md sm:p-8">
+          {/* Header */}
+          <div>
+            <h1 className="text-xl font-bold text-gray-900 sm:text-2xl">
+              Welcome Back
+            </h1>
 
-          <p className="mt-1 text-sm text-gray-600">
-            Login to continue shopping
-          </p>
+            <p className="mt-1 text-sm text-gray-600">
+              Login to continue shopping
+            </p>
+          </div>
 
           {/* Testing Credentials */}
-          <div className="mt-5 rounded-md border border-blue-200 bg-blue-50 p-4">
+          <div className="mt-5 rounded-md border border-blue-200 bg-blue-50 p-3 sm:p-4">
             <p className="text-sm font-semibold text-blue-900">
               🧪 Testing Credentials
             </p>
@@ -102,19 +105,21 @@ export default function LoginPage() {
                   User Account
                 </p>
 
-                <p className="mt-1 text-gray-600">
-                  Email:{' '}
-                  <span className="font-medium text-gray-900">
-                    user@gmail.com
-                  </span>
-                </p>
+                <div className="mt-1 space-y-0.5 text-gray-600">
+                  <p className="break-all">
+                    Email:{' '}
+                    <span className="font-medium text-gray-900">
+                      user@gmail.com
+                    </span>
+                  </p>
 
-                <p className="text-gray-600">
-                  Password:{' '}
-                  <span className="font-medium text-gray-900">
-                    123456
-                  </span>
-                </p>
+                  <p>
+                    Password:{' '}
+                    <span className="font-medium text-gray-900">
+                      123456
+                    </span>
+                  </p>
+                </div>
 
                 <button
                   type="button"
@@ -124,7 +129,7 @@ export default function LoginPage() {
                       '123456',
                     )
                   }
-                  className="mt-2 text-sm font-medium text-blue-600 hover:underline"
+                  className="mt-2 min-h-10 text-sm font-medium text-blue-600 hover:underline"
                 >
                   Use User Credentials
                 </button>
@@ -136,19 +141,21 @@ export default function LoginPage() {
                   Admin Account
                 </p>
 
-                <p className="mt-1 text-gray-600">
-                  Email:{' '}
-                  <span className="font-medium text-gray-900">
-                    admin@gmail.com
-                  </span>
-                </p>
+                <div className="mt-1 space-y-0.5 text-gray-600">
+                  <p className="break-all">
+                    Email:{' '}
+                    <span className="font-medium text-gray-900">
+                      admin@gmail.com
+                    </span>
+                  </p>
 
-                <p className="text-gray-600">
-                  Password:{' '}
-                  <span className="font-medium text-gray-900">
-                    123456
-                  </span>
-                </p>
+                  <p>
+                    Password:{' '}
+                    <span className="font-medium text-gray-900">
+                      123456
+                    </span>
+                  </p>
+                </div>
 
                 <button
                   type="button"
@@ -158,7 +165,7 @@ export default function LoginPage() {
                       '123456',
                     )
                   }
-                  className="mt-2 text-sm font-medium text-blue-600 hover:underline"
+                  className="mt-2 min-h-10 text-sm font-medium text-blue-600 hover:underline"
                 >
                   Use Admin Credentials
                 </button>
@@ -166,18 +173,25 @@ export default function LoginPage() {
             </div>
           </div>
 
+          {/* Login Form */}
           <form
             onSubmit={handleSubmit}
             className="mt-6 space-y-4"
           >
+            {/* Email */}
             <div>
-              <label className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Email
               </label>
 
               <input
+                id="email"
                 type="email"
                 required
+                autoComplete="email"
                 value={form.email}
                 onChange={(e) =>
                   setForm({
@@ -185,19 +199,25 @@ export default function LoginPage() {
                     email: e.target.value,
                   })
                 }
-                className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500"
+                className="mt-1 min-h-11 w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500 sm:text-base"
                 placeholder="you@example.com"
               />
             </div>
 
+            {/* Password */}
             <div>
-              <label className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Password
               </label>
 
               <input
+                id="password"
                 type="password"
                 required
+                autoComplete="current-password"
                 value={form.password}
                 onChange={(e) =>
                   setForm({
@@ -205,24 +225,26 @@ export default function LoginPage() {
                     password: e.target.value,
                   })
                 }
-                className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500"
+                className="mt-1 min-h-11 w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500 sm:text-base"
                 placeholder="••••••"
               />
             </div>
 
-            <div className="text-right">
+            {/* Forgot Password */}
+            <div className="flex justify-end">
               <Link
                 href="/forgot-password"
-                className="text-sm font-medium text-orange-600 hover:underline"
+                className="inline-flex min-h-10 items-center text-sm font-medium text-orange-600 hover:underline"
               >
                 Forgot Password?
               </Link>
             </div>
 
+            {/* Login Button */}
             <button
               type="submit"
               disabled={loading}
-              className="w-full rounded-md bg-orange-600 px-4 py-2.5 font-medium text-white transition hover:bg-orange-700 disabled:cursor-not-allowed disabled:bg-gray-400"
+              className="min-h-11 w-full rounded-md bg-orange-600 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-orange-700 disabled:cursor-not-allowed disabled:bg-gray-400 sm:text-base"
             >
               {loading
                 ? 'Logging in...'
@@ -230,6 +252,7 @@ export default function LoginPage() {
             </button>
           </form>
 
+          {/* Register */}
           <p className="mt-6 text-center text-sm text-gray-600">
             Don&apos;t have an account?{' '}
             <Link

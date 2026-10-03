@@ -43,20 +43,23 @@ export default function ForgotPasswordPage() {
   };
 
   return (
-    <main className="min-h-screen bg-gray-50 py-12">
-      <div className="mx-auto max-w-md px-4">
-        <div className="rounded-lg bg-white p-8 shadow-md">
-          <h1 className="text-2xl font-bold text-gray-900">
-            Forgot Password?
-          </h1>
+    <main className="min-h-screen bg-gray-50 px-4 py-8 sm:py-12">
+      <div className="mx-auto w-full max-w-md">
+        <div className="rounded-lg bg-white p-5 shadow-md sm:p-8">
+          {/* Header */}
+          <div>
+            <h1 className="text-xl font-bold text-gray-900 sm:text-2xl">
+              Forgot Password?
+            </h1>
 
-          <p className="mt-2 text-sm text-gray-600">
-            Enter your email address and we&apos;ll send
-            you a link to reset your password.
-          </p>
+            <p className="mt-2 text-sm leading-6 text-gray-600">
+              Enter your email address and we&apos;ll send
+              you a link to reset your password.
+            </p>
+          </div>
 
           {/* Email Service Limitation */}
-          <div className="mt-4 rounded-md border border-yellow-200 bg-yellow-50 p-3 text-sm text-yellow-800">
+          <div className="mt-4 rounded-md border border-yellow-200 bg-yellow-50 p-3 text-sm leading-6 text-yellow-800 sm:p-4">
             <p className="font-medium">
               ⚠️ Demo Notice
             </p>
@@ -69,8 +72,9 @@ export default function ForgotPasswordPage() {
             </p>
           </div>
 
+          {/* Success State */}
           {sent ? (
-            <div className="mt-6 rounded-md bg-green-50 p-4 text-sm text-green-700">
+            <div className="mt-6 rounded-md bg-green-50 p-4 text-sm leading-6 text-green-700">
               <p className="font-medium">
                 Check your email
               </p>
@@ -81,23 +85,30 @@ export default function ForgotPasswordPage() {
               </p>
             </div>
           ) : (
+            /* Reset Form */
             <form
               onSubmit={handleSubmit}
               className="mt-6 space-y-4"
             >
               <div>
-                <label className="block text-sm font-medium text-gray-700">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   Email
                 </label>
 
                 <input
+                  id="email"
                   type="email"
                   required
+                  autoComplete="email"
+                  inputMode="email"
                   value={email}
                   onChange={(e) =>
                     setEmail(e.target.value)
                   }
-                  className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500"
+                  className="mt-1 min-h-11 w-full rounded-md border border-gray-300 px-3 py-2.5 text-sm focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500 sm:text-base"
                   placeholder="you@example.com"
                 />
               </div>
@@ -105,7 +116,7 @@ export default function ForgotPasswordPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full rounded-md bg-orange-600 px-4 py-2.5 font-medium text-white transition hover:bg-orange-700 disabled:cursor-not-allowed disabled:bg-gray-400"
+                className="min-h-11 w-full rounded-md bg-orange-600 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-orange-700 disabled:cursor-not-allowed disabled:bg-gray-400 sm:text-base"
               >
                 {loading
                   ? 'Sending...'
@@ -114,10 +125,11 @@ export default function ForgotPasswordPage() {
             </form>
           )}
 
+          {/* Back to Login */}
           <div className="mt-6 text-center">
             <Link
               href="/login"
-              className="text-sm font-medium text-orange-600 hover:underline"
+              className="inline-flex min-h-10 items-center text-sm font-medium text-orange-600 hover:underline"
             >
               ← Back to Login
             </Link>
