@@ -3,21 +3,21 @@
 <p align="center">
   <img src="https://img.shields.io/badge/My--Kart-E--Commerce-orange?style=for-the-badge" alt="My-Kart" />
   <img src="https://img.shields.io/badge/Full--Stack-Application-blue?style=for-the-badge" alt="Full Stack" />
-  <img src="https://img.shields.io/badge/Status-Deployment%20Ready-success?style=for-the-badge" alt="Status" />
+  <img src="https://img.shields.io/badge/Status-Feature%20Complete-success?style=for-the-badge" alt="Status" />
 </p>
 
 <p align="center">
-  A modern full-stack e-commerce platform built with a scalable frontend,
-  RESTful backend, PostgreSQL database, real-time communication,
-  online payment integration and cloud-based services.
+  A modern full-stack e-commerce platform built with Next.js, NestJS,
+  PostgreSQL, JWT authentication, real-time communication, online payment
+  integration, cloud image storage, email services, and an admin dashboard.
 </p>
 
 <p align="center">
   <a href="#-features">Features</a> •
+  <a href="#-screenshots">Screenshots</a> •
   <a href="#-technology-stack">Tech Stack</a> •
   <a href="#-architecture">Architecture</a> •
   <a href="#-challenges--solutions">Challenges</a> •
-  <a href="#-limitations">Limitations</a> •
   <a href="#-installation">Installation</a>
 </p>
 
@@ -27,7 +27,7 @@
 
 **My-Kart** is a full-stack e-commerce application developed to simulate a real-world online shopping platform.
 
-The application provides a complete shopping workflow:
+The project covers the complete shopping lifecycle:
 
 ```text
 👤 User
@@ -47,24 +47,27 @@ The application provides a complete shopping workflow:
 ⭐ Product Rating
 ```
 
-The project goes beyond basic CRUD functionality and includes:
+Unlike a basic CRUD application, My-Kart includes business rules, role-based authorization, payment validation, real-time updates, password recovery, cloud services, and a dedicated administration system.
+
+### Core Capabilities
 
 * 🔐 JWT authentication
-* 👥 Role-based authorization
+* 👥 Customer/Admin role-based authorization
 * 🛍️ Product management
 * 🛒 Persistent shopping cart
 * 📦 Order management
 * 💵 Cash on Delivery
 * 💳 SSLCommerz online payment
-* ⭐ Purchased-user-only product rating
+* ⭐ Purchased-user-only product ratings
 * ⚡ Real-time rating updates with Socket.IO
 * 🔑 Forgot Password / Password Reset
 * ☁️ Cloudinary image upload
 * 📧 Resend email integration
 * 📊 Admin analytics
-* 🧾 Order invoice
+* 🧾 Order invoice generation
 * 🔄 Strict order status workflow
-* 🚀 Production deployment architecture
+* 📱 Responsive user and admin interfaces
+* 🚀 Production-oriented deployment architecture
 
 ---
 
@@ -82,11 +85,11 @@ The project goes beyond basic CRUD functionality and includes:
 * 🔄 Reset password
 * 🛍️ Browse products
 * 🔎 Product details
-* 🖼️ Product images
-* 🛒 Add to cart
+* 🖼️ Cloud-hosted product images
+* 🛒 Add products to cart
 * ➕ Increase quantity
 * ➖ Decrease quantity
-* ❌ Remove cart item
+* ❌ Remove cart items
 * 🧹 Clear cart
 * 💰 Subtotal calculation
 * 🚚 Shipping calculation
@@ -97,7 +100,7 @@ The project goes beyond basic CRUD functionality and includes:
 * 🔍 View order details
 * ❌ Cancel eligible orders
 * ⭐ Rate purchased products
-* ✏️ Update existing rating
+* ✏️ Update existing ratings
 * ⚡ Real-time rating updates
 
 ---
@@ -109,67 +112,197 @@ The project goes beyond basic CRUD functionality and includes:
 * 💰 Revenue analytics
 * 📦 Product management
 * 🛍️ Order management
-* 🔄 Strict order status control
+* 🔄 Controlled order status transitions
 * 💳 Payment status monitoring
 * 🧾 Order invoice
 * 🔐 Admin-only protected routes
+* 📊 Order status breakdown
+* 📱 Responsive collapsible admin sidebar
+
+---
+
+# 📸 Screenshots
+
+> Screenshots are organized to demonstrate the major customer and administration workflows of My-Kart.
+
+## 🏠 Home & Product Discovery
+
+### 🏠 Home Page
+
+![My-Kart Home Page](./screenshots/home-page.png)
+
+The homepage provides a responsive product browsing experience with product cards, categories, pricing, ratings, and shopping actions.
+
+---
+
+### 🛍️ Product Details
+
+![My-Kart Product Details](./screenshots/product-details.png)
+
+The product details page provides product information, pricing, images, ratings, availability, and cart interaction.
+
+---
+
+## 🛒 Shopping & Checkout
+
+### 🛒 Shopping Cart
+
+![My-Kart Shopping Cart](./screenshots/shopping-cart.png)
+
+The cart allows customers to review selected products, update quantities, remove items, view subtotal and shipping costs, and proceed to checkout.
+
+---
+
+### 💳 Checkout
+
+![My-Kart Checkout](./screenshots/checkout-page.png)
+
+The checkout page collects shipping information and provides payment options including Cash on Delivery and online payment through SSLCommerz.
+
+---
+
+## 📦 Customer Orders
+
+### 📋 Customer Orders
+
+![My-Kart Customer Orders](./screenshots/customer-orders.png)
+
+Customers can view their previous orders, payment information, order status, totals, and order dates from a dedicated order management page.
+
+---
+
+### 🔍 Order Details
+
+![My-Kart Order Details](./screenshots/customer-order-details.png)
+
+The order details page provides a complete view of the selected order, including products, quantities, shipping information, payment method, total amount, and current status.
+
+---
+
+## 👤 Account
+
+### 👤 User Profile
+
+![My-Kart User Profile](./screenshots/user-profile.png)
+
+The profile page allows authenticated users to view and update their account information including name, email, and phone number.
+
+---
+
+### 🔐 Authentication
+
+![My-Kart Authentication](./screenshots/authentication.png)
+
+The authentication interface provides registration and login functionality with JWT-based session management.
+
+---
+
+## 👨‍💼 Administration
+
+### 📊 Admin Dashboard
+
+![My-Kart Admin Dashboard](./screenshots/admin-dashboard.png)
+
+The admin dashboard provides a high-level overview of store activity, including order statistics, payment status, cancelled orders, and revenue information.
+
+---
+
+### 📦 Admin Products
+
+![My-Kart Admin Products](./screenshots/admin-products.png)
+
+Administrators can manage the product catalog, including product information, pricing, categories, images, and inventory-related data.
+
+---
+
+### 🛍️ Admin Orders
+
+![My-Kart Admin Orders](./screenshots/admin-orders.png)
+
+The admin order management interface allows administrators to inspect customer orders and manage their status according to the predefined order workflow.
+
+---
+
+### 📈 Admin Analytics
+
+![My-Kart Admin Analytics](./screenshots/admin-analytics.png)
+
+The analytics dashboard visualizes order and payment data using charts, helping administrators understand overall store activity.
+
+---
+
+### 🧾 Order Invoice
+
+![My-Kart Order Invoice](./screenshots/order-invoice.png)
+
+Administrators can generate a printable/downloadable order invoice containing customer, shipping, product, payment, and order information.
 
 ---
 
 # 🧰 Technology Stack
 
-The project is divided into separate **Frontend**, **Backend**, **Database**, and **External Services** layers.
+The application is divided into four major layers:
+
+```text
+Frontend
+   ↓
+Backend API
+   ↓
+PostgreSQL Database
+   ↓
+External Services
+```
 
 ---
 
 ## 🎨 Frontend
 
-| Technology               | Usage                    |
-| ------------------------ | ------------------------ |
-| ⚛️ **React**             | UI development           |
-| ▲ **Next.js**            | Frontend framework       |
-| 🔷 **TypeScript**        | Type-safe development    |
-| 🎨 **Tailwind CSS**      | UI styling               |
-| 📡 **Axios**             | API communication        |
-| 🧠 **React Context API** | Global state management  |
-| 🍞 **React Hot Toast**   | Notifications            |
-| ✨ **Lucide React**       | UI icons                 |
-| ⚡ **Socket.IO Client**   | Real-time rating updates |
-| 📊 **Recharts**          | Admin analytics/charts   |
+| Technology           | Purpose                   |
+| -------------------- | ------------------------- |
+| ⚛️ React             | UI development            |
+| ▲ Next.js            | Frontend framework        |
+| 🔷 TypeScript        | Type-safe development     |
+| 🎨 Tailwind CSS      | Styling and responsive UI |
+| 📡 Axios             | REST API communication    |
+| 🧠 React Context API | Global state management   |
+| 🍞 React Hot Toast   | User notifications        |
+| ✨ Lucide React       | UI icons                  |
+| ⚡ Socket.IO Client   | Real-time communication   |
+| 📊 Recharts          | Admin analytics           |
 
 ### Frontend Architecture
 
 ```text
 Next.js
-   │
-   ├── App Router
-   ├── React Components
-   ├── Context API
-   │     ├── AuthContext
-   │     └── CartContext
-   │
-   ├── Axios API Client
-   ├── Tailwind CSS
-   ├── Socket.IO Client
-   ├── React Hot Toast
-   └── Recharts
+│
+├── App Router
+├── React Components
+├── Context API
+│   ├── AuthContext
+│   └── CartContext
+│
+├── Axios API Client
+├── Tailwind CSS
+├── Socket.IO Client
+├── React Hot Toast
+└── Recharts
 ```
 
 ---
 
 # ⚙️ Backend
 
-| Technology            | Usage                          |
-| --------------------- | ------------------------------ |
-| 🐈 **NestJS**         | Backend framework              |
-| 🔷 **TypeScript**     | Type-safe backend development  |
-| 🗄️ **TypeORM**       | ORM / database communication   |
-| 🔐 **JWT**            | Authentication                 |
-| 🛂 **Passport**       | Authentication strategy        |
-| 🔒 **bcrypt**         | Password hashing               |
-| ✅ **class-validator** | DTO validation                 |
-| ⚡ **Socket.IO**       | Real-time communication        |
-| 🌐 **REST API**       | Frontend/backend communication |
+| Technology        | Purpose                        |
+| ----------------- | ------------------------------ |
+| 🐈 NestJS         | Backend framework              |
+| 🔷 TypeScript     | Type-safe development          |
+| 🗄️ TypeORM       | ORM / database communication   |
+| 🔐 JWT            | Authentication                 |
+| 🛂 Passport       | Authentication strategy        |
+| 🔒 bcrypt         | Password hashing               |
+| ✅ class-validator | DTO validation                 |
+| ⚡ Socket.IO       | Real-time communication        |
+| 🌐 REST API       | Frontend/backend communication |
 
 ### Backend Modules
 
@@ -196,9 +329,9 @@ PostgreSQL is used as the primary relational database.
 
 ### ORM
 
-🔗 **TypeORM**
+**TypeORM** manages the application's relational data model.
 
-TypeORM manages:
+Main entities include:
 
 * 👤 Users
 * 🛍️ Products
@@ -206,7 +339,7 @@ TypeORM manages:
 * 📦 Orders
 * 📦 Order Items
 * ⭐ Ratings
-* 🔑 Password reset fields
+* 🔑 Password reset data
 
 ### Main Relationships
 
@@ -234,9 +367,9 @@ TypeORM manages:
 
 ## 🖼️ Cloudinary
 
-Used for:
+Cloudinary is used for:
 
-* Product image upload
+* Product image uploads
 * Cloud-based image storage
 * Image URL delivery
 
@@ -256,9 +389,9 @@ Database
 
 ## 💳 SSLCommerz
 
-Used for online payments.
+SSLCommerz is integrated for online payment processing.
 
-Supported flow:
+### Payment Flow
 
 ```text
 🛒 Checkout
@@ -271,7 +404,7 @@ Supported flow:
      ↓
 ✅ Success Callback
      ↓
-🔎 Payment Validation
+🔎 Backend Payment Validation
      ↓
 💰 Order → PAID
      ↓
@@ -285,20 +418,18 @@ Supported callbacks:
 * 🚫 Cancel
 * 🔄 IPN
 
+The backend validates payment status before marking an order as paid.
+
 ---
 
 ## 📧 Resend
 
-Used for password reset email delivery.
-
-Password reset flow:
+Resend is integrated for password reset email delivery.
 
 ```text
 🔑 Forgot Password
        ↓
-📧 Email Request
-       ↓
-🔐 Secure Token Generated
+🎲 Secure Token Generated
        ↓
 # Token Hash Stored
        ↓
@@ -311,9 +442,9 @@ Password reset flow:
 
 ---
 
-# 🔐 Authentication
+# 🔐 Authentication & Authorization
 
-My-Kart uses JWT-based authentication.
+My-Kart uses JWT-based authentication with role-based authorization.
 
 ### Login Flow
 
@@ -324,31 +455,29 @@ My-Kart uses JWT-based authentication.
   ↓
 🔐 Backend
   ↓
-🔎 Verify User
+🔎 Credential Verification
   ↓
-🔑 JWT Token
+🔑 JWT Access Token
   ↓
-💾 localStorage
+💾 Client Storage
   ↓
 🛡️ Protected API Requests
 ```
 
-### Role-based Access
-
-Two user roles are supported:
+### Supported Roles
 
 ```text
 CUSTOMER
 ADMIN
 ```
 
-Admin routes are protected using JWT authentication and role guards.
+Admin-only functionality is protected on the backend rather than relying only on frontend route visibility.
 
 ---
 
 # 🔑 Forgot Password / Password Reset
 
-My-Kart includes a complete password reset system.
+My-Kart includes a secure password recovery workflow.
 
 ### Security Flow
 
@@ -357,15 +486,15 @@ My-Kart includes a complete password reset system.
    ↓
 🔑 Forgot Password
    ↓
-📧 Enter Email
+📧 Email Submitted
    ↓
 🎲 Secure Random Token
    ↓
-# SHA-256 Hash
+# SHA-256 Token Hash
    ↓
 🗄️ Store Token Hash
    ↓
-⏱️ 15 Minute Expiration
+⏱️ 15-Minute Expiration
    ↓
 📨 Resend
    ↓
@@ -375,81 +504,56 @@ My-Kart includes a complete password reset system.
    ↓
 🔒 bcrypt Hash
    ↓
-🗑️ Invalidate Reset Token
+🗑️ Reset Token Invalidated
 ```
 
 ### Security Features
 
-* 🎲 Secure random reset token
+* 🎲 Cryptographically secure reset token
 * # SHA-256 token hashing
 * ⏱️ Token expiration
 * 🔒 bcrypt password hashing
 * 🗑️ Token invalidation after successful reset
 * 🚫 No plaintext password storage
-* 🚫 No plaintext password sent by email
+* 🚫 No plaintext password sent through email
 
 ---
 
-# ⚠️ Important Password Reset Limitation
+# ⚠️ Password Reset Email Limitation
 
-> ## 📧 Resend Testing Configuration
+The password reset **logic and Resend integration are implemented**, but the current configuration uses Resend's testing sender.
 
-The **password reset functionality itself is fully implemented and tested**, but the current email delivery setup uses the **Resend testing configuration**.
-
-The current sender configuration uses a Resend-provided testing sender such as:
+Example:
 
 ```text
 onboarding@resend.dev
 ```
 
-This is suitable for development/testing, but it is **not the final production email configuration** for sending password reset emails to arbitrary users.
+This is suitable for development/testing but is not the final production email configuration for unrestricted delivery.
 
-### What currently works
+### Current Status
 
-| Component                  | Status |
-| -------------------------- | ------ |
-| 🔑 Forgot Password API     | ✅      |
-| 🎲 Token Generation        | ✅      |
-| # Token Hashing            | ✅      |
-| ⏱️ Token Expiration        | ✅      |
-| 🔗 Reset Link              | ✅      |
-| 🔑 Reset Password          | ✅      |
-| 🔒 bcrypt Password Hashing | ✅      |
-| 🗑️ Token Invalidation     | ✅      |
-| 📧 Resend Integration      | ✅      |
-| 🌐 Production Email Domain | ⏳      |
+| Component                 | Status |
+| ------------------------- | ------ |
+| Forgot Password API       | ✅      |
+| Secure Token Generation   | ✅      |
+| Token Hashing             | ✅      |
+| Token Expiration          | ✅      |
+| Reset Link Generation     | ✅      |
+| Reset Password API        | ✅      |
+| bcrypt Password Hashing   | ✅      |
+| Token Invalidation        | ✅      |
+| Resend Integration        | ✅      |
+| Production Sending Domain | ⏳      |
 
-### Current Limitation
+### Production Configuration
 
-With the current Resend testing setup, email delivery is restricted by the provider's testing configuration.
+A production deployment should use:
 
-Therefore, **a password reset request may not be delivered to an arbitrary user's email address while using the current test sender configuration**.
-
-This means:
-
-```text
-Password Reset Logic
-        ↓
-       ✅
-Email Sending Integration
-        ↓
-       ✅
-Production Email Delivery
-        ↓
-       ⏳
-Verified Sending Domain Required
-```
-
-### Production Solution
-
-For production email delivery:
-
-1. 🌐 Add a domain to Resend.
-2. 🔎 Verify the domain through DNS.
-3. ⚙️ Configure the required DNS records.
-4. 📧 Use a sender address from the verified domain.
-5. 🔐 Update the production `RESEND_API_KEY`.
-6. 🔄 Update the backend sender configuration.
+1. A verified sending domain
+2. Appropriate DNS records
+3. A production Resend API key
+4. A sender address from the verified domain
 
 Example:
 
@@ -458,32 +562,25 @@ FRONTEND_URL=https://your-frontend-domain.com
 RESEND_API_KEY=your_resend_api_key
 ```
 
-Production sender:
-
-```text
-My-Kart <no-reply@yourdomain.com>
-```
-
-This limitation is a **deployment/email-provider configuration issue**, not a missing password-reset feature.
-
 ---
 
 # 🛒 Cart System
 
 The cart is persistent and user-specific.
 
-Users can:
+Customers can:
 
-* ➕ Add items
+* ➕ Add products
 * ➖ Update quantity
 * ❌ Remove items
-* 🧹 Clear cart
+* 🧹 Clear the cart
 * 💰 Calculate subtotal
+* 🚚 Calculate shipping
 * 🔢 View total item count
 
-### Payment-aware Cart Clearing
+### Payment-Aware Cart Clearing
 
-The cart is cleared **only after successful payment validation**.
+The cart is cleared only after successful payment validation for online payments.
 
 ```text
 🛒 Cart
@@ -492,38 +589,24 @@ The cart is cleared **only after successful payment validation**.
   ↓
 💳 SSLCommerz
   ↓
-✅ Payment Validated
+🔎 Payment Validation
+  ↓
+✅ Payment Confirmed
   ↓
 📦 Order → PAID
   ↓
-🧹 Delete Cart Items
-  ↓
-🛒 Badge → 0
+🧹 Cart Items Removed
 ```
 
-If payment fails:
-
-```text
-❌ Payment Failed
-      ↓
-🛒 Cart Remains
-```
-
-If payment is cancelled:
-
-```text
-🚫 Payment Cancelled
-      ↓
-🛒 Cart Remains
-```
+If payment fails or is cancelled, the cart remains available.
 
 ---
 
 # 📦 Order Management
 
-The backend uses a strict order status workflow.
+My-Kart uses a strict server-side order status workflow.
 
-## Order Status
+## Order Lifecycle
 
 ```text
 🟡 PENDING
@@ -543,7 +626,7 @@ The backend uses a strict order status workflow.
 
 Invalid transitions are rejected by the backend.
 
-For example:
+Examples:
 
 ```text
 ❌ PENDING → SHIPPED
@@ -551,23 +634,23 @@ For example:
 ❌ DELIVERED → PROCESSING
 ```
 
-This prevents invalid order states.
+This prevents invalid order states from being created through direct API requests.
 
 ---
 
 # ⭐ Product Rating System
 
-The rating system follows real-world e-commerce rules.
+The rating system follows e-commerce business rules.
 
 ### Rules
 
-* 🔐 User must be authenticated.
-* 🛍️ User must have purchased the product.
-* ❌ Cancelled orders do not qualify.
-* 1️⃣ One rating per user/product.
-* ✏️ Existing ratings can be updated.
-* ⭐ Rating range is 1–5.
-* 📊 Average rating is calculated dynamically.
+* 🔐 User must be authenticated
+* 🛍️ User must have purchased the product
+* ❌ Cancelled orders do not qualify
+* 1️⃣ One rating per user/product
+* ✏️ Existing ratings can be updated
+* ⭐ Rating range is 1–5
+* 📊 Average rating is calculated dynamically
 
 ### Database Constraint
 
@@ -575,13 +658,13 @@ The rating system follows real-world e-commerce rules.
 @Unique(['userId', 'productId'])
 ```
 
-This prevents duplicate ratings for the same user/product combination.
+This prevents duplicate ratings for the same user and product.
 
 ---
 
-# ⚡ Real-Time Rating
+# ⚡ Real-Time Rating Updates
 
-Socket.IO is used for real-time rating synchronization.
+Socket.IO is used to synchronize rating information in real time.
 
 ```text
 👤 User A
@@ -596,10 +679,10 @@ Socket.IO is used for real-time rating synchronization.
    ↓
 👥 Connected Users
    ↓
-⭐ Rating Updates
+⭐ Updated Rating
 ```
 
-Event:
+Example event:
 
 ```text
 ratingUpdated
@@ -617,28 +700,11 @@ Example payload:
 
 ---
 
-# 🏠 Home Page Product Ratings
-
-Product cards display ratings directly on the homepage.
-
-Example:
-
-```text
-📱 Nothing 4a Pro
-
-৳ 45,000
-
-⭐ 4.5
-(24 ratings)
-```
-
-Users do not need to open the product details page to see the rating.
-
----
-
 # 📊 Admin Analytics
 
-The admin dashboard includes analytics for:
+The admin dashboard provides an overview of store activity.
+
+Tracked information includes:
 
 * 📦 Total orders
 * 💳 Paid orders
@@ -646,23 +712,19 @@ The admin dashboard includes analytics for:
 * 💰 Total revenue
 * 📋 Order status breakdown
 
-Charts are implemented using:
-
-📊 **Recharts**
+Charts are implemented using **Recharts**.
 
 ---
 
-# 🧾 Invoice / Receipt
+# 🧾 Order Invoice
 
-Admin users can access order invoices.
-
-Invoice information includes:
+Administrators can access order invoices containing:
 
 * 🛒 My-Kart branding
 * 🔢 Order number
 * 👤 Customer information
 * 📍 Shipping information
-* 🛍️ Products
+* 🛍️ Ordered products
 * 🔢 Quantity
 * 💰 Pricing
 * 💳 Payment information
@@ -675,7 +737,7 @@ The invoice supports browser print/download functionality.
 
 # 🧩 Challenges & Solutions
 
-Building My-Kart involved several real-world technical challenges.
+My-Kart was developed through hands-on debugging of issues across the frontend, backend, database, WebSocket, payment, and third-party integrations.
 
 ---
 
@@ -698,7 +760,7 @@ TypeORM could not correctly infer the database type for the nullable field.
 
 ### Solution
 
-Explicit PostgreSQL-compatible types were added:
+Explicit PostgreSQL-compatible types were defined:
 
 ```ts
 @Column({
@@ -716,15 +778,15 @@ resetPasswordExpires: Date | null;
 
 ### Result
 
-✅ Database connection restored.
+✅ Password reset fields became compatible with PostgreSQL.
 
 ---
 
-# ⚡ 2. NestJS WebSocket Version Conflict
+## ⚡ 2. NestJS WebSocket Version Conflict
 
 ### Problem
 
-The project was using NestJS 11, while installing the latest WebSocket packages introduced dependency conflicts with NestJS 12 packages.
+The project uses NestJS 11, while incompatible WebSocket package versions introduced dependency conflicts.
 
 ### Solution
 
@@ -736,30 +798,26 @@ npm install @nestjs/websockets@^11 @nestjs/platform-socket.io@^11 socket.io
 
 ### Result
 
-✅ Socket.IO integration worked with the existing NestJS version.
+✅ Socket.IO integration works with the project's NestJS version.
 
 ---
 
-# 🔌 3. Socket.IO Invalid Namespace Error
+## 🔌 3. Socket.IO Connection / Namespace Issue
 
 ### Problem
 
-The initial Socket.IO connection returned:
+The initial Socket.IO connection produced:
 
 ```text
 Invalid namespace
 ```
 
-### Cause
-
-The client URL/path configuration did not correctly match the Socket.IO server configuration.
-
 ### Solution
 
-The client was configured explicitly:
+The client connection was configured explicitly with the matching Socket.IO path and transport:
 
 ```ts
-const socket = io('http://localhost:4000', {
+const socket = io(socketUrl, {
   path: '/socket.io',
   transports: ['websocket'],
 });
@@ -771,47 +829,19 @@ const socket = io('http://localhost:4000', {
 Rating socket connected
 ```
 
-✅ Real-time rating synchronization worked.
+✅ Real-time rating communication became functional.
 
 ---
 
-# ⭐ 4. Real-Time Rating Synchronization
+## ⭐ 4. Purchased-User-Only Rating
 
 ### Problem
 
-A rating submitted from one browser was not immediately reflected in another browser.
+A basic rating endpoint could allow an authenticated user to rate a product without actually purchasing it.
 
 ### Solution
 
-Socket.IO was introduced.
-
-```text
-⭐ Rating Submitted
-       ↓
-⚙️ Backend
-       ↓
-🗄️ Database
-       ↓
-⚡ WebSocket Event
-       ↓
-👥 Connected Clients
-```
-
-### Result
-
-✅ Rating updates appear in real time without refreshing.
-
----
-
-# 🛍️ 5. Purchased-User-Only Rating
-
-### Problem
-
-A basic rating API could allow an authenticated user to rate products they never purchased.
-
-### Solution
-
-The backend checks:
+The backend verifies:
 
 ```text
 👤 User
@@ -820,28 +850,20 @@ The backend checks:
  ↓
 🛍️ Product Exists in Order
  ↓
-🚫 Order Not Cancelled
+🚫 Order Is Not Cancelled
  ↓
 ⭐ Rating Allowed
 ```
 
-Otherwise:
-
-```text
-403 Forbidden
-```
-
-### Lesson
-
-Business rules must be enforced on the backend, not only through frontend UI.
+Business rules are enforced server-side rather than relying only on frontend controls.
 
 ---
 
-# 1️⃣ 6. Duplicate Product Ratings
+## 1️⃣ 5. Duplicate Product Ratings
 
 ### Problem
 
-A user could potentially create multiple ratings for the same product.
+A user should not be able to create multiple ratings for the same product.
 
 ### Solution
 
@@ -851,37 +873,19 @@ A database-level unique constraint was added:
 @Unique(['userId', 'productId'])
 ```
 
-Existing ratings are updated instead of creating another rating.
-
-### Result
-
-```text
-👤 User + 🛍️ Product
-        ↓
-    ⭐ One Rating
-        ↓
-Future Rating → ✏️ Update
-```
+Existing ratings can be updated instead of creating duplicates.
 
 ---
 
-# 📦 7. Invalid Order Status Transitions
+## 📦 6. Invalid Order Status Transitions
 
 ### Problem
 
-During development, an admin attempted to move:
-
-```text
-PAID → SHIPPED
-```
-
-directly.
-
-The backend correctly rejected the invalid transition.
+An admin could attempt to move an order directly between unrelated states.
 
 ### Solution
 
-A strict transition map was implemented.
+A strict backend transition map was implemented:
 
 ```text
 PENDING
@@ -895,23 +899,25 @@ SHIPPED
 DELIVERED
 ```
 
+Cancellation is only allowed from eligible states.
+
 ### Result
 
 ✅ Invalid order transitions are rejected server-side.
 
 ---
 
-# 💳 8. SSLCommerz Local Callback Problem
+## 💳 7. SSLCommerz Local Callback Problem
 
 ### Problem
 
-During local development, the backend was running on:
+During local development, the backend runs on:
 
 ```text
 http://localhost:4000
 ```
 
-But SSLCommerz needs a publicly accessible callback URL.
+SSLCommerz requires publicly accessible callback URLs.
 
 ### Solution
 
@@ -921,70 +927,51 @@ ngrok was used during local payment testing:
 ngrok http 4000
 ```
 
-This temporarily exposed the local backend to the internet.
+This temporarily exposed the local backend for payment callbacks.
 
-### Important
+### Production
 
-ngrok is only a **development/testing tool**.
-
-It is not required for production.
-
-After deployment:
+After deployment, the public backend URL can be used directly:
 
 ```text
-SSLCommerz
-    ↓
 https://your-backend.onrender.com/api/payments/success
 ```
 
 ---
 
-# 🔎 9. SSLCommerz Payment Validation
+## 🔎 8. SSLCommerz Payment Validation
 
 ### Problem
 
-A frontend redirect alone cannot be treated as proof of successful payment.
+A browser redirect alone cannot be treated as proof of successful payment.
 
 ### Solution
 
-The backend validates the payment with SSLCommerz before marking the order as paid.
+The backend validates the transaction with SSLCommerz before changing the order to `PAID`.
 
 ```text
 💳 Payment Callback
        ↓
 🔎 SSLCommerz Validation
        ↓
-✅ VALID / VALIDATED
+✅ Valid Payment
        ↓
 📦 Order → PAID
 ```
 
-### Result
-
-✅ Payment status is controlled by the backend.
+This keeps payment status under backend control.
 
 ---
 
-# 🛒 10. Cart Badge Did Not Clear After Payment
+## 🛒 9. Cart Badge After Payment
 
 ### Problem
 
-After successful payment:
-
-```text
-📦 Order → PAID
-🛒 Cart → 1
-```
-
-The order was paid, but the cart remained.
-
-### Cause
-
-The database cart was not cleared after successful payment confirmation.
+After successful payment, the database order was updated but the frontend cart state could remain stale.
 
 ### Solution
 
-Cart items are deleted only after verified payment:
+The cart state is refreshed/cleared after successful order completion.
 
 ```text
 💳 Payment
@@ -993,43 +980,26 @@ Cart items are deleted only after verified payment:
    ↓
 📦 Order → PAID
    ↓
-🧹 CartItem DELETE
+🧹 Cart Cleared
    ↓
 🛒 Cart Badge → 0
 ```
 
-### Result
-
-✅ Cart stays empty after refresh as well.
-
 ---
 
-# 👤 11. `/auth/me` Missing Phone Number
+## 👤 10. `/auth/me` Missing Phone Number
 
 ### Problem
 
-The phone number existed in the database but disappeared after refreshing the page.
+The phone number existed in the database but disappeared after refreshing the application.
 
 ### Cause
 
-The JWT strategy returned:
-
-```text
-id
-email
-role
-name
-```
-
-but not:
-
-```text
-phone
-```
+The JWT validation response did not initially include the phone field.
 
 ### Solution
 
-The JWT validation response was updated:
+The authenticated user payload was updated to include:
 
 ```ts
 return {
@@ -1043,89 +1013,62 @@ return {
 
 ### Result
 
-✅ Phone information persists correctly after authentication refresh.
-
----
-
-# 🔄 12. Home Page Rating API Optimization
-
-Currently, product ratings are fetched individually.
-
-Conceptually:
-
-```text
-GET /products
-
-GET /ratings/product/1
-GET /ratings/product/2
-GET /ratings/product/3
-...
-```
-
-This works for the current project.
-
-For a significantly larger catalog, the system can later be optimized using:
-
-* 📊 Product-level rating aggregation
-* 📡 Bulk rating endpoint
-* 🗄️ Cached rating summaries
-
-This is an optimization opportunity, not a current functional issue.
+✅ Profile information persists correctly after authentication refresh.
 
 ---
 
 # 🏗️ Architecture
 
 ```text
-                         🌐 Internet
-                              │
-                              ▼
-                    ┌──────────────────┐
-                    │     Next.js      │
-                    │    Frontend      │
-                    │                  │
-                    │ ⚛️ React         │
-                    │ 🎨 Tailwind      │
-                    │ 📡 Axios         │
-                    │ 🧠 Context API   │
-                    │ ⚡ Socket.IO     │
-                    └────────┬─────────┘
-                             │
-                             │ REST API
-                             ▼
-                    ┌──────────────────┐
-                    │     NestJS       │
-                    │     Backend      │
-                    │                  │
-                    │ 🔐 Auth          │
-                    │ 👤 Users         │
-                    │ 🛍️ Products      │
-                    │ 🛒 Cart          │
-                    │ 📦 Orders        │
-                    │ 💳 Payments      │
-                    │ ⭐ Ratings       │
-                    │ ☁️ Upload        │
-                    └───────┬──────────┘
-                            │
-               ┌────────────┴────────────┐
-               │                         │
-               ▼                         ▼
-       ┌─────────────────┐      ┌─────────────────┐
-       │ 🐘 PostgreSQL   │      │ ☁️ Cloudinary   │
-       │                 │      │                 │
-       │ Users           │      │ Product Images  │
-       │ Products        │      └─────────────────┘
+                         🌐 User
+                           │
+                           ▼
+                 ┌──────────────────┐
+                 │     Next.js      │
+                 │    Frontend      │
+                 │                  │
+                 │ ⚛️ React         │
+                 │ 🎨 Tailwind      │
+                 │ 📡 Axios         │
+                 │ 🧠 Context API   │
+                 │ ⚡ Socket.IO     │
+                 └────────┬─────────┘
+                          │
+                          │ REST API
+                          ▼
+                 ┌──────────────────┐
+                 │     NestJS       │
+                 │     Backend      │
+                 │                  │
+                 │ 🔐 Auth          │
+                 │ 👤 Users         │
+                 │ 🛍️ Products      │
+                 │ 🛒 Cart          │
+                 │ 📦 Orders        │
+                 │ 💳 Payments      │
+                 │ ⭐ Ratings       │
+                 │ ☁️ Upload        │
+                 └────────┬─────────┘
+                          │
+                ┌─────────┴──────────┐
+                │                    │
+                ▼                    ▼
+       ┌─────────────────┐   ┌─────────────────┐
+       │ 🐘 PostgreSQL   │   │ ☁️ Cloudinary   │
+       │                 │   │                 │
+       │ Users           │   │ Product Images  │
+       │ Products        │   └─────────────────┘
        │ Cart            │
        │ Orders          │
        │ Ratings         │
        └─────────────────┘
 
-                 External Integrations
+                 External Services
                          │
-            ┌────────────┼────────────┐
-            ▼            ▼            ▼
-       💳 SSLCommerz  📧 Resend   ⚡ Socket.IO
-         Payment       Email       Realtime
+              ┌──────────┼──────────┐
+              ▼          ▼          ▼
+        💳 SSLCommerz  📧 Resend  ⚡ Socket.IO
+           Payment       Email       Realtime
 ```
 
 ---
@@ -1148,13 +1091,10 @@ my_kart/
 │   │   └── ...
 │   │
 │   ├── components/
-│   │
 │   ├── context/
 │   │   ├── AuthContext.tsx
 │   │   └── CartContext.tsx
-│   │
 │   ├── lib/
-│   ├── types/
 │   └── ...
 │
 ├── backend/
@@ -1169,6 +1109,21 @@ my_kart/
 │       ├── users/
 │       ├── upload/
 │       └── ...
+│
+├── screenshots/
+│   ├── home-page.png
+│   ├── product-details.png
+│   ├── shopping-cart.png
+│   ├── checkout-page.png
+│   ├── customer-orders.png
+│   ├── customer-order-details.png
+│   ├── user-profile.png
+│   ├── authentication.png
+│   ├── admin-dashboard.png
+│   ├── admin-products.png
+│   ├── admin-orders.png
+│   ├── admin-analytics.png
+│   └── order-invoice.png
 │
 └── README.md
 ```
@@ -1195,17 +1150,21 @@ NEXT_PUBLIC_API_URL=https://your-backend.onrender.com/api
 
 ## ⚙️ Backend
 
-Example:
+Example configuration:
 
 ```env
 PORT=4000
 
-DATABASE_URL=your_postgresql_connection_string
+DB_HOST=your_database_host
+DB_PORT=5432
+DB_USERNAME=your_database_username
+DB_PASSWORD=your_database_password
+DB_NAME=your_database_name
 
 JWT_SECRET=your_jwt_secret
+JWT_EXPIRES_IN=7d
 
 FRONTEND_URL=http://localhost:3000
-
 BACKEND_URL=http://localhost:4000
 
 CLOUDINARY_CLOUD_NAME=your_cloud_name
@@ -1219,31 +1178,31 @@ SSLCOMMERZ_IS_LIVE=false
 RESEND_API_KEY=your_resend_api_key
 ```
 
-> 🔒 **Never commit real secrets, API keys, passwords or database credentials to GitHub.**
+> 🔒 **Never commit real passwords, API keys, JWT secrets, database credentials, or other sensitive environment variables to GitHub.**
 
 ---
 
 # 🚀 Installation
 
-## 1️⃣ Clone Repository
+## 1. Clone the Repository
 
 ```bash
-git clone https://github.com/raihankabir1952/my-kart.git
+git clone <your-github-repository>
 cd my-kart
 ```
 
 ---
 
-## 2️⃣ Backend Setup
+## 2. Backend Setup
 
 ```bash
 cd backend
 npm install
 ```
 
-Configure `.env`.
+Create the backend environment file and configure the required variables.
 
-Then:
+Start the development server:
 
 ```bash
 npm run start:dev
@@ -1263,7 +1222,7 @@ http://localhost:4000/api
 
 ---
 
-## 3️⃣ Frontend Setup
+## 3. Frontend Setup
 
 Open another terminal:
 
@@ -1292,7 +1251,7 @@ http://localhost:3000
 
 ---
 
-# 🧪 Tested Development Flows
+# 🧪 Development Flows
 
 ## 🔐 Authentication
 
@@ -1320,7 +1279,7 @@ http://localhost:3000
 🧹 Clear
 ```
 
-## 💵 COD
+## 💵 Cash on Delivery
 
 ```text
 🛒 Cart
@@ -1343,7 +1302,7 @@ http://localhost:3000
  ↓
 ✅ Payment
  ↓
-🔎 Validation
+🔎 Backend Validation
  ↓
 📦 PAID
  ↓
@@ -1371,6 +1330,8 @@ http://localhost:3000
 ```text
 🔑 Forgot Password
  ↓
+🎲 Secure Token
+ ↓
 📧 Email
  ↓
 🔗 Reset Link
@@ -1386,39 +1347,40 @@ http://localhost:3000
 
 ## 📧 1. Resend Testing Configuration
 
-The password reset feature is implemented, but production email delivery requires an appropriate verified sending domain/configuration.
-
-See:
-
-**[Forgot Password / Password Reset](#-forgot-password--password-reset)**
+Password reset is implemented, but production email delivery requires an appropriate verified sending domain.
 
 ---
 
 ## 💳 2. SSLCommerz Sandbox
 
-The project uses SSLCommerz sandbox/test credentials during development.
+The current project uses SSLCommerz sandbox/test credentials.
 
-Production deployment requires:
+Production payment processing requires:
 
 * Production merchant credentials
 * Production payment configuration
 * Production callback URLs
+* `SSLCOMMERZ_IS_LIVE=true`
 
 ---
 
 ## 📊 3. Product Rating API Optimization
 
-The current homepage retrieves ratings individually for each product.
+The current homepage retrieves ratings individually for products.
 
-For large catalogs, a bulk rating API or product-level rating aggregation can reduce API requests.
+For a much larger catalog, this can be optimized through:
+
+* Bulk rating endpoints
+* Product-level rating aggregation
+* Cached rating summaries
 
 ---
 
 ## 🌐 4. Local Payment Callback
 
-During local development, ngrok may be required for payment callbacks.
+During local development, ngrok may be required for SSLCommerz callbacks.
 
-After deployment, the public backend URL can be used directly.
+After deployment, the public Render backend URL can be used directly.
 
 ---
 
@@ -1447,12 +1409,13 @@ Potential future hardening:
 * 🚨 Error monitoring
 * 🔄 Secret rotation
 * 🧪 Automated tests
+* 🔍 Input and API abuse monitoring
 
 ---
 
 # 🚀 Deployment Architecture
 
-The planned production architecture:
+The planned production architecture is:
 
 ```text
                     🌐 Users
@@ -1461,34 +1424,48 @@ The planned production architecture:
                ┌─────────────────┐
                │     Vercel      │
                │    Next.js      │
+               │    Frontend     │
                └────────┬────────┘
                         │
                         ▼
                ┌─────────────────┐
                │     Render      │
                │     NestJS      │
+               │     Backend     │
                └───────┬─────────┘
                        │
              ┌─────────┴──────────┐
              ▼                    ▼
       ┌──────────────┐     ┌──────────────┐
-      │ 🐘 Supabase  │     │ ☁️ Cloudinary │
-      │ PostgreSQL   │     │    Images    │
+      │ Neon         │     │ Cloudinary   │
+      │ PostgreSQL   │     │ Images       │
       └──────────────┘     └──────────────┘
 
-               External Services
-                       │
-             ┌─────────┴─────────┐
-             ▼                   ▼
-        💳 SSLCommerz          📧 Resend
-          Payment                Email
+              External Services
+                     │
+              ┌──────┴──────┐
+              ▼             ▼
+        💳 SSLCommerz    📧 Resend
+           Payment         Email
 ```
+
+### Planned Deployment Stack
+
+| Layer          | Platform        |
+| -------------- | --------------- |
+| Frontend       | Vercel          |
+| Backend        | Render          |
+| Database       | Neon PostgreSQL |
+| Image Storage  | Cloudinary      |
+| Payment        | SSLCommerz      |
+| Email          | Resend          |
+| Source Control | GitHub          |
 
 ---
 
 # 📈 Future Improvements
 
-Possible future improvements:
+Possible future improvements include:
 
 * 🔎 Advanced product search
 * 🏷️ Product filtering
@@ -1502,7 +1479,7 @@ Possible future improvements:
 * 📊 Bulk rating endpoint
 * 🗄️ Database migrations
 * 🧪 Automated testing
-* 🔄 CI/CD
+* 🔄 CI/CD pipeline
 * 🚨 Error monitoring
 * 📈 Advanced admin reporting
 
@@ -1510,7 +1487,7 @@ Possible future improvements:
 
 # 🎓 What This Project Demonstrates
 
-My-Kart demonstrates practical full-stack development experience across:
+My-Kart demonstrates practical full-stack development across multiple layers of a modern web application.
 
 ### 🎨 Frontend
 
@@ -1540,15 +1517,16 @@ My-Kart demonstrates practical full-stack development experience across:
 * PostgreSQL
 * Relational data modeling
 * TypeORM relationships
-* Unique constraints
+* Database constraints
+* User/product/order relationships
 
-### ☁️ Services
+### ☁️ External Services
 
 * Cloudinary
 * SSLCommerz
 * Resend
 
-### 🧠 Engineering
+### 🧠 Engineering Concepts
 
 * Authentication
 * Authorization
@@ -1558,7 +1536,36 @@ My-Kart demonstrates practical full-stack development experience across:
 * State synchronization
 * Error handling
 * Third-party integrations
+* Responsive UI
 * Production deployment preparation
+
+---
+
+# 💡 Key Engineering Lessons
+
+My-Kart was built not only to implement features, but also to understand how different application layers interact in a real-world system.
+
+The project provided hands-on experience with:
+
+```text
+Frontend
+   ↓
+REST API
+   ↓
+Authentication
+   ↓
+Business Rules
+   ↓
+Database
+   ↓
+Third-Party Services
+   ↓
+Real-Time Communication
+```
+
+Several development issues required debugging across multiple layers, including PostgreSQL, TypeORM, JWT authentication, Socket.IO, payment callbacks, email delivery, cart synchronization, and responsive application behavior.
+
+This made the project an important practical exercise in full-stack software development rather than simply a UI-focused e-commerce project.
 
 ---
 
@@ -1568,7 +1575,7 @@ My-Kart demonstrates practical full-stack development experience across:
 
 **Full-Stack Web Developer**
 
-### 💻 Core Technologies
+### Core Technologies
 
 ```text
 ⚛️ React.js
@@ -1584,9 +1591,7 @@ My-Kart demonstrates practical full-stack development experience across:
 📧 Resend
 ```
 
-### 🔗 GitHub
-
-https://github.com/raihankabir1952
+**GitHub:** `raihankabir1952`
 
 ---
 
@@ -1596,7 +1601,7 @@ https://github.com/raihankabir1952
 | -------------------------- | -------------- |
 | 🎨 Frontend                | ✅ Complete     |
 | ⚙️ Backend                 | ✅ Complete     |
-| 🗄️ Database               | ✅ Complete     |
+| 🗄️ Database Integration   | ✅ Complete     |
 | 🔐 Authentication          | ✅ Complete     |
 | 🛒 Cart                    | ✅ Complete     |
 | 📦 Orders                  | ✅ Complete     |
@@ -1606,16 +1611,19 @@ https://github.com/raihankabir1952
 | 📊 Admin Analytics         | ✅ Complete     |
 | 🧾 Invoice                 | ✅ Complete     |
 | 🔑 Password Reset          | ✅ Complete     |
+| 📱 Responsive UI           | ✅ Complete     |
+| 📖 Documentation           | ✅ Complete     |
+| 📸 Screenshots             | 📝 To be added |
 | 📧 Production Email Domain | ⏳ Pending      |
-| 🌐 Production Deployment   | 🚧 In Progress |
+| 🌐 Production Deployment   | ⏳ Pending      |
 
 ---
 
 # ❤️ Built Through Real-World Debugging
 
-My-Kart was developed as a hands-on full-stack project focused not only on building features, but also on understanding and solving real integration problems.
+My-Kart was developed as a hands-on full-stack project focused not only on implementing features, but also on understanding and solving real integration problems.
 
-During development, the project involved challenges across:
+The project involved practical challenges across:
 
 ```text
 🐘 PostgreSQL
@@ -1629,11 +1637,10 @@ During development, the project involved challenges across:
 📧 Email Delivery
 ☁️ Cloud Storage
 📊 Admin Analytics
+📱 Responsive Design
 ```
 
-Each challenge required debugging across multiple layers of the application.
-
-The goal of My-Kart was not simply to build an e-commerce interface, but to understand how a complete full-stack application behaves when frontend, backend, database and third-party services work together.
+The goal was to build an application where the frontend, backend, database, authentication system, payment gateway, email service, cloud storage, and real-time communication work together as one complete system.
 
 ---
 
