@@ -41,6 +41,15 @@ export class OrdersController {
     return this.ordersService.findAll();
   }
 
+
+  // Admin: analytics
+@UseGuards(JwtAuthGuard, RolesGuard)
+@Roles(UserRole.ADMIN)
+@Get('analytics')
+analytics() {
+  return this.ordersService.getAnalytics();
+}
+
   // Customer cancel own order
   @UseGuards(JwtAuthGuard)
   @Patch(':id/cancel')

@@ -6,27 +6,27 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-// User er kon role thakbe - eta enum (predefined values only)
+//
 export enum UserRole {
   CUSTOMER = 'customer',
   ADMIN = 'admin',
 }
 
-@Entity('users') // 'users' = database table er naam
+@Entity('users')
 export class User {
-  @PrimaryGeneratedColumn('uuid') // unique ID, auto-generate hobe
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ unique: true }) // ekta email ekbar er beshi register korte parbe na
+  @Column({ unique: true })
   email: string;
 
-  @Column() // password (encrypted thakbe, plain na)
+  @Column()
   password: string;
 
   @Column()
   name: string;
 
-  @Column({ nullable: true }) // optional - na dileo cholbe
+  @Column({ nullable: true })
   phone: string;
 
   @Column({ nullable: true, type: 'text' })
@@ -35,13 +35,23 @@ export class User {
   @Column({
     type: 'enum',
     enum: UserRole,
-    default: UserRole.CUSTOMER, // default e sob user 'customer'
+    default: UserRole.CUSTOMER,
   })
   role: UserRole;
 
-  @CreateDateColumn() // jokhon create hoyeche
+  // Forgot Password
+  @Column({ 
+    type: 'varchar',
+    nullable: true, 
+  })
+  resetPasswordTokenHash: string | null;
+
+  @Column({ nullable: true, type: 'timestamp' })
+  resetPasswordExpires: Date | null;
+
+  @CreateDateColumn()
   createdAt: Date;
 
-  @UpdateDateColumn() // last update kobe hoyeche
+  @UpdateDateColumn()
   updatedAt: Date;
 }

@@ -3,3 +3,34 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
+@media print {
+  /* Hide the entire page during printing */
+  body * {
+    visibility: hidden;
+  }
+
+  /* Show only the invoice */
+  #order-invoice,
+  #order-invoice * {
+    visibility: visible;
+  }
+
+  /* Make invoice fill the printable page */
+  #order-invoice {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 30px;
+    background: white;
+  }
+
+  /* A4 paper */
+  @page {
+    size: A4;
+    margin: 0;
+  }
+}
+

@@ -14,18 +14,26 @@ interface AuthContextType {
   user: User | null;
   loading: boolean;
   login: (token: string, user: User) => void;
+  updateUser: (userData: User) => void;
   logout: () => void;
 }
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+const AuthContext = createContext<AuthContextType | undefined>(
+  undefined,
+);
 
-export function AuthProvider({ children }: { children: ReactNode }) {
+export function AuthProvider({
+  children,
+}: {
+  children: ReactNode;
+}) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
   // App start hole - localStorage theke user load koro
   useEffect(() => {
     const token = localStorage.getItem('token');
+
     if (token) {
       // Verify token by calling /auth/me
       api
@@ -46,13 +54,25 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setUser(userData);
   };
 
+  const updateUser = (userData: User) => {
+    setUser(userData);
+  };
+
   const logout = () => {
     localStorage.removeItem('token');
     setUser(null);
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, login, logout }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        loading,
+        login,
+        updateUser,
+        logout,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
@@ -61,8 +81,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 // Custom hook - easy access
 export function useAuth() {
   const ctx = useContext(AuthContext);
+
   if (!ctx) {
-    throw new Error('useAuth must be used within AuthProvider');
+    throw new Error(
+      'useAuth must be used within AuthProvider',
+    );
   }
+
   return ctx;
 }

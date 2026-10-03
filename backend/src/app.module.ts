@@ -10,6 +10,7 @@ import { CartModule } from './cart/cart.module';
 import { OrdersModule } from './orders/orders.module';
 import { UploadModule } from './upload/upload.module';
 import { PaymentsModule } from './payments/payments.module'; // ← ADD
+import { RatingsModule } from './ratings/ratings.module';
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import { PaymentsModule } from './payments/payments.module'; // ← ADD
     OrdersModule,
     UploadModule,
     PaymentsModule, // ← ADD
+    RatingsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

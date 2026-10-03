@@ -2,7 +2,12 @@
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { ShoppingCart, LogIn, User as UserIcon, LogOut } from 'lucide-react';
+import {
+  ShoppingCart,
+  LogIn,
+  User as UserIcon,
+  LogOut,
+} from 'lucide-react';
 import toast from 'react-hot-toast';
 import { useAuth } from '@/context/AuthContext';
 import { useCart } from '@/context/CartContext';
@@ -29,10 +34,17 @@ export default function Header() {
         </Link>
 
         <nav className="hidden items-center gap-6 md:flex">
-          <Link href="/" className="text-gray-700 hover:text-orange-600">
+          <Link
+            href="/"
+            className="text-gray-700 hover:text-orange-600"
+          >
             Home
           </Link>
-          <Link href="/" className="text-gray-700 hover:text-orange-600">
+
+          <Link
+            href="/"
+            className="text-gray-700 hover:text-orange-600"
+          >
             Products
           </Link>
         </nav>
@@ -43,6 +55,7 @@ export default function Header() {
             className="relative rounded-full p-2 text-gray-700 hover:bg-gray-100"
           >
             <ShoppingCart className="h-5 w-5" />
+
             {totalItems > 0 && (
               <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-orange-600 text-xs font-bold text-white">
                 {totalItems}
@@ -57,17 +70,35 @@ export default function Header() {
                 className="flex items-center gap-2 rounded-md bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-200"
               >
                 <UserIcon className="h-4 w-4" />
-                <span className="hidden sm:inline">{user.name}</span>
+
+                <span className="hidden sm:inline">
+                  {user.name}
+                </span>
               </button>
 
               {menuOpen && (
                 <div className="absolute right-0 mt-2 w-48 rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5">
+                  {/* User Info */}
                   <div className="border-b px-4 py-2">
                     <p className="text-sm font-medium text-gray-900">
                       {user.name}
                     </p>
-                    <p className="text-xs text-gray-500">{user.email}</p>
+
+                    <p className="text-xs text-gray-500">
+                      {user.email}
+                    </p>
                   </div>
+
+                  {/* Profile */}
+                  <Link
+                    href="/profile"
+                    onClick={() => setMenuOpen(false)}
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >
+                    Profile
+                  </Link>
+
+                  {/* Orders */}
                   <Link
                     href="/orders"
                     onClick={() => setMenuOpen(false)}
@@ -75,6 +106,8 @@ export default function Header() {
                   >
                     My Orders
                   </Link>
+
+                  {/* Admin */}
                   {user.role === 'admin' && (
                     <Link
                       href="/admin"
@@ -84,6 +117,8 @@ export default function Header() {
                       Admin Dashboard
                     </Link>
                   )}
+
+                  {/* Logout */}
                   <button
                     onClick={handleLogout}
                     className="flex w-full items-center gap-2 px-4 py-2 text-left text-sm text-red-600 hover:bg-gray-100"

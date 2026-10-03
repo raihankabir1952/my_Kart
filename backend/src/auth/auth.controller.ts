@@ -1,12 +1,24 @@
-import { Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  Req,
+  UseGuards,
+} from '@nestjs/common';
+
 import { AuthService } from './auth.service';
+
 import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
-import { JwtAuthGuard } from './guards/jwt-auth.guard';
+import { ForgotPasswordDto } from './dto/forgot-password.dto';
 
-@Controller('auth') // ei controller er sob route /api/auth/... diye shuru
+import { JwtAuthGuard } from './guards/jwt-auth.guard';
+import { ResetPasswordDto } from './dto/reset-password.dto';
+
+@Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(private readonly authService: AuthService) { }
 
   // POST /api/auth/register
   @Post('register')
@@ -20,10 +32,28 @@ export class AuthController {
     return this.authService.login(dto);
   }
 
+  // POST /api/auth/forgot-password
+  @Post('forgot-password')
+  forgotPassword(@Body() dto: ForgotPasswordDto) {
+    return this.authService.forgotPassword(dto.email);
+  }
+
+
+  // POST /api/auth/reset-password
+  @Post('reset-password')
+  resetPassword(@Body() dto: ResetPasswordDto) {
+    return this.authService.resetPassword(
+      dto.token,
+      dto.newPassword,
+    );
+  }
+
+
+
   // GET /api/auth/me (protected - JWT lagbe)
   @UseGuards(JwtAuthGuard)
   @Get('me')
   me(@Req() req: any) {
-    return req.user; // JWT strategy theke set hoy
+    return req.user;
   }
 }
