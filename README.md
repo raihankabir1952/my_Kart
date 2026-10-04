@@ -11,6 +11,10 @@
 </p>
 
 <p align="center">
+  <strong>At a glance:</strong> customer and admin roles · cart and checkout · SSLCommerz payment (sandbox) with server-side validation · controlled order workflow · real-time ratings (Socket.IO) · admin analytics and invoices. Not deployed yet; run it locally using the steps in the Installation section.
+</p>
+
+<p align="center">
   <a href="#-features">Features</a> •
   <a href="#-screenshots">Screenshots</a> •
   <a href="#-tech-stack">Tech Stack</a> •
@@ -89,8 +93,6 @@ The project focuses on practical full-stack concepts including authentication, a
 ---
 
 ## 📸 Screenshots
-
-> Place the screenshots inside the `screenshots/` folder using the filenames below.
 
 ### 🏠 Home Page
 
@@ -476,8 +478,8 @@ my_kart/
 ### 1. Clone
 
 ```bash
-git clone <your-github-repository>
-cd my_kart
+git clone https://github.com/raihankabir1952/my_Kart.git
+cd my_Kart
 ```
 
 ### 2. Backend
@@ -573,7 +575,7 @@ RESEND_API_KEY=your_resend_api_key
 | Invoice                 | ✅ Complete     |
 | Password Reset          | ✅ Complete     |
 | Responsive UI           | ✅ Complete     |
-| Screenshots             | 📝 Being added |
+| Screenshots             | ✅ Complete     |
 | Production Email Domain | ⏳ Pending      |
 | Production Deployment   | ⏳ Pending      |
 
