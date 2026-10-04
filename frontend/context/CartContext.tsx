@@ -94,7 +94,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
     try {
       await api.delete('/cart');
       setItems([]);
-      toast.success('Cart cleared');
     } catch (error: any) {
       toast.error(error.response?.data?.message || 'Clear failed');
     }

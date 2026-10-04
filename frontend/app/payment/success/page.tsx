@@ -10,20 +10,28 @@ function PaymentSuccessContent() {
   const searchParams = useSearchParams();
   const orderId = searchParams.get('orderId');
   const router = useRouter();
-  const { refresh } = useCart();
+
+  const { clearCart } = useCart();
+
   const [countdown, setCountdown] = useState(5);
 
-  // Clear cart after payment (with delay to ensure backend processed)
+  // Clear cart after successful payment
   useEffect(() => {
-    const timer = setTimeout(() => {
-      refresh();
-    }, 1500);
+    const clearSuccessfulPaymentCart = async () => {
+      try {
+        await clearCart();
+      } catch (error) {
+        console.error(
+          'Failed to clear cart after payment:',
+          error,
+        );
+      }
+    };
 
-    return () => clearTimeout(timer);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    clearSuccessfulPaymentCart();
+  }, [clearCart]);
 
-  // Countdown timer (just decrements)
+  // Countdown timer
   useEffect(() => {
     if (!orderId) return;
     if (countdown <= 0) return;
@@ -35,9 +43,10 @@ function PaymentSuccessContent() {
     return () => clearTimeout(timer);
   }, [countdown, orderId]);
 
-  // Separate effect: redirect when countdown reaches 0
+  // Redirect when countdown reaches 0
   useEffect(() => {
     if (!orderId) return;
+
     if (countdown === 0) {
       router.push(`/orders/${orderId}`);
     }
@@ -56,14 +65,16 @@ function PaymentSuccessContent() {
           </h1>
 
           <p className="mt-3 text-gray-600">
-            Thank you for your purchase. Your order has been confirmed and will
-            be processed soon.
+            Thank you for your purchase. Your order has been
+            confirmed and will be processed soon.
           </p>
 
           {orderId && countdown > 0 && (
             <p className="mt-4 text-sm text-gray-500">
               Redirecting to order details in{' '}
-              <span className="font-bold text-orange-600">{countdown}</span>{' '}
+              <span className="font-bold text-orange-600">
+                {countdown}
+              </span>{' '}
               seconds...
             </p>
           )}
@@ -78,6 +89,7 @@ function PaymentSuccessContent() {
                 View Order
               </Link>
             )}
+
             <Link
               href="/"
               className="flex items-center justify-center gap-2 rounded-md border border-gray-300 bg-white px-6 py-2.5 font-medium text-gray-700 hover:bg-gray-50"
@@ -99,3 +111,4 @@ export default function PaymentSuccessPage() {
     </Suspense>
   );
 }
+
